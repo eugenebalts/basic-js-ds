@@ -76,9 +76,27 @@ class BinarySearchTree{
     return result
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(value) {
+    let result;
+    function find(current) {
+      if (value === current.rooot) {
+        result = current
+      } else if (value < current.rooot) {
+        if (current.leftFork) {
+          find(current.leftFork)
+        } else {
+          result = current.leftFork
+        }
+      } else if (value > current.rooot) {
+        if (current.rightFork) {
+          find(current.rightFork)
+        } else {
+          result = current.rightFork
+        }
+      }
+    }
+    find(this.rooot)
+    return result
   }
 
   remove(/* data */) {
@@ -112,8 +130,10 @@ tree.add(13.5)
 
 
 
-console.log(tree)
-console.log(tree.has(15))
+
+// console.log(tree)
+// console.log(tree.has(15))
+console.log(tree.find(16))
 
 
 
