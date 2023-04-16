@@ -26,30 +26,54 @@ class BinarySearchTree{
 
       // FUNCTION REC
 
-      function recursive(current) {
+      function add(current) {
         if (value < current.rooot) {             // LEFT FORK
           if (current.leftFork){
-            recursive(current.leftFork)
+            add(current.leftFork)
           } else {
             current.leftFork = newValue
           }
         } else  if (current.rooot < value){    // RIGHT FORK
           if (current.rightFork){
-            recursive(current.rightFork)
+            add(current.rightFork)
           } else {
             current.rightFork = newValue
           }
         }
       }
 
-      recursive(this.rooot)
+      add(this.rooot)
     }
     
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(value) {
+
+    let result;
+
+    function has(current) {
+      if (value === current.rooot) {
+        result = true
+      } else {
+        if (value < current.rooot) {             // LEFT FORK
+          if (current.leftFork){
+            has(current.leftFork)
+          } else {
+            result = false
+          }
+        } else  if (value > current.rooot){    // RIGHT FORK
+          if (current.rightFork) {
+            has(current.rightFork)
+          } else {
+            result = false
+          }
+        }
+      }
+    }
+
+    has(this.rooot)
+
+    return result
   }
 
   find(/* data */) {
@@ -78,19 +102,19 @@ class BinarySearchTree{
 let tree = new BinarySearchTree()
 
 
-// tree.add(7)
-// tree.add(5)
-// tree.add(11)
-// tree.add(14)
-// tree.add(10)
-// tree.add(13)
-// tree.add(13.5)
+tree.add(7)
+tree.add(5)
+tree.add(11)
+tree.add(14)
+tree.add(10)
+tree.add(13)
+tree.add(13.5)
 
 
-// console.log(tree.rot())
-console.log(tree.root())
+
 console.log(tree)
-// console.log(tree.add(10))
+console.log(tree.has(15))
+
 
 
 
