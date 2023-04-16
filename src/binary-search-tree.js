@@ -2,54 +2,49 @@ const { NotImplementedError } = require('../extensions/index.js');
 
 class Node {
   constructor (value) {
-    this.root = value
+    this.rooot = value
     this.leftFork = null;
     this.rightFork = null;
   }
 }
 
-class BinarySearchTree {
+class BinarySearchTree{
   constructor () {
-    this.root = null
-    this.leftFork = null
-    this.rightFork = null
+    this.rooot = null
   }
 
   root() {
-    const newValue = newNode(value)
-    this.root = newValue
-    return this
+    return this.rooot
   }
 
   add(value) {
     const newValue = new Node(value)
 
-    if (this.root === null) {
-      this.root = value
+    if (this.rooot === null) {
+      this.rooot = newValue
     } else {
 
+      // FUNCTION REC
 
-        if (value < this.root) {             // LEFT FORK
-          this.leftFork = newValue
-        } else {
-          this.rightFork = newValue      // RIGHT FORK
+      function recursive(current) {
+        if (value < current.rooot) {             // LEFT FORK
+          if (current.leftFork){
+            recursive(current.leftFork)
+          } else {
+            current.leftFork = newValue
+          }
+        } else  if (current.rooot < value){    // RIGHT FORK
+          if (current.rightFork){
+            recursive(current.rightFork)
+          } else {
+            current.rightFork = newValue
+          }
         }
+      }
 
-        let current = this.root
-
-        while (current.leftFork === null || current.rightFork === null) {
-
-        }
-
-
-
-
-
-
+      recursive(this.rooot)
     }
-
-
-
+    
   }
 
   has(/* data */) {
@@ -82,17 +77,24 @@ class BinarySearchTree {
 
 let tree = new BinarySearchTree()
 
-tree.add(7)
-tree.add(8)
-tree.add(6)
-tree.add(9)
 
-console.log(tree.root)
+// tree.add(7)
+// tree.add(5)
+// tree.add(11)
+// tree.add(14)
+// tree.add(10)
+// tree.add(13)
+// tree.add(13.5)
 
+
+// console.log(tree.rot())
+console.log(tree.root())
 console.log(tree)
+// console.log(tree.add(10))
 
 
 
-// module.exports = {
-//   BinarySearchTree
-// };
+module.exports = {
+  BinarySearchTree
+};
+
