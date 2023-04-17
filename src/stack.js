@@ -17,17 +17,19 @@ class Stack {
     this.array = []
   }
   push(element) {
+    // throw new NotImplementedError('Not implemented');
     this.array = [...this.array, element]
   }
 
   pop() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let result = this.array[0]
+    this.array.splice(0, 1)
+    return result
   }
 
   peek() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    // throw new NotImplementedError('Not implemented');
+    return this.array[this.array.length - 1]
   }
 }
 
@@ -40,4 +42,9 @@ let newArray = new Stack()
 console.log(newArray)
 
 newArray.push(5)
-console.log(newArray)
+newArray.push(7)
+newArray.push(4)
+newArray.push(8)
+newArray.pop()
+console.log(newArray.pop())
+console.log(newArray.peek())
