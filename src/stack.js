@@ -22,8 +22,8 @@ class Stack {
   }
 
   pop() {
-    let result = this.array[0]
-    this.array.splice(0, 1)
+    let result = this.array[this.array.length - 1]
+    this.array.splice(this.array.length -1, 1)
     return result
   }
 
