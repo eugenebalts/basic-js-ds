@@ -58,10 +58,10 @@ describe('Binary search tree', () => {
       tree.add(32);
       tree.add(12);
       tree.add(14);
-      assert.strictEqual(tree.find(8).data, 8);
-      assert.strictEqual(tree.find(2).data, 2);
-      assert.strictEqual(tree.find(32).data, 32);
-      assert.strictEqual(tree.find(14).data, 14);
+      assert.strictEqual(tree.find(8).rooot, 8);
+      assert.strictEqual(tree.find(2).rooot, 2);
+      assert.strictEqual(tree.find(32).rooot, 32);
+      assert.strictEqual(tree.find(14).rooot, 14);
     });
 
     it.optional('find non-existing values', () => {

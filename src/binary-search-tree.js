@@ -82,7 +82,7 @@ class BinarySearchTree{
   }
 
   find(data) {
-    let result;
+    let result = {};
     function find(current) {
   
       if (data === current.rooot) {
@@ -133,7 +133,7 @@ class BinarySearchTree{
         current.rooot = null;
         current.leftFork = null
         current.rightFork = null
-      } else if (value < current.rooot) {
+      } else if (data < current.rooot) {
         if (current.leftFork) {
           remove(current.leftFork)
         }
@@ -181,12 +181,18 @@ let tree = new BinarySearchTree()
 
 
 tree.add(2);
-tree.add(3);
+tree.add(7);
+tree.add(1);
+tree.add(8);
 tree.add(4);
+tree.add(32);
+tree.add(12);
+tree.add(14);
 
-console.log(tree)
-// console.log(tree.max())
-console.log(tree.root().data)
+console.log(tree.find(8).rooot);
+console.log(tree.find(2));
+console.log(tree.find(32));
+console.log(tree.find(14).rooot);
 
 
 
