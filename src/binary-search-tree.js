@@ -143,8 +143,16 @@ class BinarySearchTree{
   }
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let result;
+    function min(current) {
+      if (current.leftFork) {
+        min(current.leftFork)
+      } else if (current.rooot) {
+        result = current.rooot
+      } else result = null
+    }
+    min(this.rooot)
+    return result
   }
 
   max() {
@@ -172,8 +180,7 @@ tree.add(3)
 
 
 console.log(tree)
-tree.remove(14)
-console.log(tree.rooot.rightFork)
+console.log(tree.min())
 
 
 
