@@ -78,7 +78,6 @@ class BinarySearchTree{
   find(data) {
     let result = {};
     function find(current) {
-  
       if (data === current.data) {
         result = current
       } else if (data < current.data) {
@@ -123,10 +122,10 @@ class BinarySearchTree{
   remove(data) {
     const removed = new Node(null)
     function remove(current, parent) {
-      if (data === current.data) {
-        current.data = null;
-        current.leftFork = null
-        current.rightFork = null
+      if (!current.data) {
+        return null
+      } else if (current.data === data) {
+        return (current)
       } else if (data < current.data) {
         if (current.leftFork) {
           remove(current.leftFork)
@@ -139,7 +138,8 @@ class BinarySearchTree{
         return false
       }
     }
-    remove(this.rooot)
+    remove(this.rooot, null)
+
   }
 
   min() {
@@ -167,37 +167,53 @@ class BinarySearchTree{
     max(this.rooot)
     return result
   }
+
 }
 
 
 
 let tree = new BinarySearchTree()
 
-
 tree.add(9);
 tree.add(14);
+tree.add(54);
 tree.add(2);
 tree.add(6);
-tree.add(128);
 tree.add(8);
 tree.add(31);
-tree.add(54);
 tree.add(1);
-tree.remove(14);
-tree.remove(8);
-tree.remove(9);
-
-console.log(tree.has(14));
-console.log(tree.has(8));
-console.log(tree.has(9));
-console.log(tree.has(2));
-console.log(tree.has(6));
-console.log(tree.has(128));
-console.log(tree.has(31));
-console.log(tree.has(54));
-console.log(tree.has(1));
+tree.remove(6);
+tree.remove(2);
 
 console.log(tree)
+// console.log(tree.min(), 1);
+
+// tree.add(9);
+// tree.add(14);
+// tree.add(2);
+// tree.add(6);
+// tree.add(128);
+// tree.add(8);
+// tree.add(31);
+// tree.add(54);
+// tree.add(1);
+// // tree.remove(14);
+// // tree.remove(8);
+// // tree.remove(9);
+
+// console.log(tree.has(14));
+// console.log(tree.has(8));
+// console.log(tree.has(9));
+// console.log(tree.has(2));
+// console.log(tree.has(6));
+// console.log(tree.has(128));
+// console.log(tree.has(31));
+// console.log(tree.has(54));
+// console.log(tree.has(1));
+
+
+
+// console.log(tree)
 
 
 
