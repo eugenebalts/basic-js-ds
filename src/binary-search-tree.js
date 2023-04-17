@@ -1,8 +1,8 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
 class Node {
-  constructor (value) {
-    this.rooot = value
+  constructor (data) {
+    this.rooot = data;
     this.leftFork = null;
     this.rightFork = null;
   }
@@ -14,11 +14,17 @@ class BinarySearchTree{
   }
 
   root() {
-    return this.rooot
+    if (this.rooot) {
+      return {
+        data: this.rooot.rooot
+      }
+    } else {
+      return null
+    }
   }
 
-  add(value) {
-    const newValue = new Node(value)
+  add(data) {
+    const newValue = new Node(data)
 
     if (this.rooot === null) {
       this.rooot = newValue
@@ -27,13 +33,13 @@ class BinarySearchTree{
       // FUNCTION REC
 
       function add(current) {
-        if (value < current.rooot) {             // LEFT FORK
+        if (data < current.rooot) {             // LEFT FORK
           if (current.leftFork){
             add(current.leftFork)
           } else {
             current.leftFork = newValue
           }
-        } else  if (current.rooot < value){    // RIGHT FORK
+        } else  if (current.rooot < data){    // RIGHT FORK
           if (current.rightFork){
             add(current.rightFork)
           } else {
@@ -47,21 +53,21 @@ class BinarySearchTree{
     
   }
 
-  has(value) {
+  has(data) {
 
     let result;
 
     function has(current) {
-      if (value === current.rooot) {
+      if (data === current.rooot) {
         result = true
       } else {
-        if (value < current.rooot) {             // LEFT FORK
+        if (data < current.rooot) {             // LEFT FORK
           if (current.leftFork){
             has(current.leftFork)
           } else {
             result = false
           }
-        } else  if (value > current.rooot){    // RIGHT FORK
+        } else  if (data > current.rooot){    // RIGHT FORK
           if (current.rightFork) {
             has(current.rightFork)
           } else {
@@ -75,19 +81,19 @@ class BinarySearchTree{
     return result
   }
 
-  find(value) {
+  find(data) {
     let result;
     function find(current) {
   
-      if (value === current.rooot) {
+      if (data === current.rooot) {
         result = current
-      } else if (value < current.rooot) {
+      } else if (data < current.rooot) {
         if (current.leftFork) {
           find(current.leftFork)
         } else {
           result = current.leftFork
         }
-      } else if (value > current.rooot) {
+      } else if (data > current.rooot) {
         if (current.rightFork) {
           find(current.rightFork)
         } else {
@@ -120,10 +126,10 @@ class BinarySearchTree{
     // return result;
   }
 
-  remove(value) {
+  remove(data) {
     const removed = new Node(null)
     function remove(current, parent) {
-      if (value === current.rooot) {
+      if (data === current.rooot) {
         current.rooot = null;
         current.leftFork = null
         current.rightFork = null
@@ -131,11 +137,11 @@ class BinarySearchTree{
         if (current.leftFork) {
           remove(current.leftFork)
         }
-      } else if (value > current.rooot) {
+      } else if (data > current.rooot) {
         if (current.rightFork) {
           remove(current.rightFork)
         }
-      } else if (!(value < current.rooot && value > current.rooot)) {
+      } else if (!(data < current.rooot && data > current.rooot)) {
         return false
       }
     }
@@ -174,22 +180,13 @@ class BinarySearchTree{
 let tree = new BinarySearchTree()
 
 
-tree.add(7)
-tree.add(5)
-tree.add(11)
-tree.add(14)
-tree.add(10)
-tree.add(13)
-tree.add(13.5)
-tree.add(6)
-tree.add(3)
-tree.add(1)
-tree.add(111)
-
-
+tree.add(2);
+tree.add(3);
+tree.add(4);
 
 console.log(tree)
-console.log(tree.max())
+// console.log(tree.max())
+console.log(tree.root().data)
 
 
 
