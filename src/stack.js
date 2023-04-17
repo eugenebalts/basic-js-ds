@@ -13,9 +13,11 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 class Stack {
-  push(/* element */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor() {
+    this.array = []
+  }
+  push(element) {
+    this.array = [...this.array, element]
   }
 
   pop() {
@@ -32,3 +34,10 @@ class Stack {
 module.exports = {
   Stack
 };
+
+let newArray = new Stack()
+
+console.log(newArray)
+
+newArray.push(5)
+console.log(newArray)
