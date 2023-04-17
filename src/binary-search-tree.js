@@ -2,7 +2,7 @@ const { NotImplementedError } = require('../extensions/index.js');
 
 class Node {
   constructor (data) {
-    this.rooot = data;
+    this.data = data;
     this.leftFork = null;
     this.rightFork = null;
   }
@@ -14,13 +14,7 @@ class BinarySearchTree{
   }
 
   root() {
-    if (this.rooot) {
-      return {
-        data: this.rooot.rooot
-      }
-    } else {
-      return null
-    }
+    return this.rooot
   }
 
   add(data) {
@@ -33,13 +27,13 @@ class BinarySearchTree{
       // FUNCTION REC
 
       function add(current) {
-        if (data < current.rooot) {             // LEFT FORK
+        if (data < current.data) {             // LEFT FORK
           if (current.leftFork){
             add(current.leftFork)
           } else {
             current.leftFork = newValue
           }
-        } else  if (current.rooot < data){    // RIGHT FORK
+        } else  if (current.data < data){    // RIGHT FORK
           if (current.rightFork){
             add(current.rightFork)
           } else {
@@ -58,16 +52,16 @@ class BinarySearchTree{
     let result;
 
     function has(current) {
-      if (data === current.rooot) {
+      if (data === current.data) {
         result = true
       } else {
-        if (data < current.rooot) {             // LEFT FORK
+        if (data < current.data) {             // LEFT FORK
           if (current.leftFork){
             has(current.leftFork)
           } else {
             result = false
           }
-        } else  if (data > current.rooot){    // RIGHT FORK
+        } else  if (data > current.data){    // RIGHT FORK
           if (current.rightFork) {
             has(current.rightFork)
           } else {
@@ -85,15 +79,15 @@ class BinarySearchTree{
     let result = {};
     function find(current) {
   
-      if (data === current.rooot) {
+      if (data === current.data) {
         result = current
-      } else if (data < current.rooot) {
+      } else if (data < current.data) {
         if (current.leftFork) {
           find(current.leftFork)
         } else {
           result = current.leftFork
         }
-      } else if (data > current.rooot) {
+      } else if (data > current.data) {
         if (current.rightFork) {
           find(current.rightFork)
         } else {
@@ -129,19 +123,19 @@ class BinarySearchTree{
   remove(data) {
     const removed = new Node(null)
     function remove(current, parent) {
-      if (data === current.rooot) {
-        current.rooot = null;
+      if (data === current.data) {
+        current.data = null;
         current.leftFork = null
         current.rightFork = null
-      } else if (data < current.rooot) {
+      } else if (data < current.data) {
         if (current.leftFork) {
           remove(current.leftFork)
         }
-      } else if (data > current.rooot) {
+      } else if (data > current.data) {
         if (current.rightFork) {
           remove(current.rightFork)
         }
-      } else if (!(data < current.rooot && data > current.rooot)) {
+      } else if (!(data < current.data && data > current.data)) {
         return false
       }
     }
@@ -153,8 +147,8 @@ class BinarySearchTree{
     function min(current) {
       if (current.leftFork) {
         min(current.leftFork)
-      } else if (current.rooot) {
-        result = current.rooot
+      } else if (current.data) {
+        result = current.data
       } else result = null
     }
     min(this.rooot)
@@ -166,8 +160,8 @@ class BinarySearchTree{
     function max(current) {
       if (current.rightFork) {
         max(current.rightFork)
-      } else if (current.rooot) {
-        result = current.rooot
+      } else if (current.data) {
+        result = current.data
       } else result = null
     }
     max(this.rooot)
@@ -180,19 +174,30 @@ class BinarySearchTree{
 let tree = new BinarySearchTree()
 
 
-tree.add(2);
-tree.add(7);
-tree.add(1);
-tree.add(8);
-tree.add(4);
-tree.add(32);
-tree.add(12);
+tree.add(9);
 tree.add(14);
+tree.add(2);
+tree.add(6);
+tree.add(128);
+tree.add(8);
+tree.add(31);
+tree.add(54);
+tree.add(1);
+tree.remove(14);
+tree.remove(8);
+tree.remove(9);
 
-console.log(tree.find(8).rooot);
-console.log(tree.find(2));
-console.log(tree.find(32));
-console.log(tree.find(14).rooot);
+console.log(tree.has(14));
+console.log(tree.has(8));
+console.log(tree.has(9));
+console.log(tree.has(2));
+console.log(tree.has(6));
+console.log(tree.has(128));
+console.log(tree.has(31));
+console.log(tree.has(54));
+console.log(tree.has(1));
+
+console.log(tree)
 
 
 
