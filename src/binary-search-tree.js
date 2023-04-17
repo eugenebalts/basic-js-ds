@@ -72,13 +72,13 @@ class BinarySearchTree{
     }
 
     has(this.rooot)
-
     return result
   }
 
   find(value) {
     let result;
     function find(current) {
+  
       if (value === current.rooot) {
         result = current
       } else if (value < current.rooot) {
@@ -97,11 +97,49 @@ class BinarySearchTree{
     }
     find(this.rooot)
     return result
+    // let i = 0;
+    // function find(current) {
+    //   i += 1
+    //   console.log(i)
+    //   if (current.rooot === value) {
+    //     result = current
+    //   }
+    //   if (value < current.rooot) {
+    //     if (current.leftFork) {
+    //       find(current.leftFork)
+    //     } else result = null
+    //   } else if (value > current.root) {
+    //     if (rightFork) {
+    //       find(current.rightFork)
+    //     } else result = null
+    //   }  
+    //   i += 1
+    //   console.log(i)
+    // }
+    // find(this.rooot)
+    // return result;
   }
 
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  remove(value) {
+    const removed = new Node(null)
+    function remove(current, parent) {
+      if (value === current.rooot) {
+        current.rooot = null;
+        current.leftFork = null
+        current.rightFork = null
+      } else if (value < current.rooot) {
+        if (current.leftFork) {
+          remove(current.leftFork)
+        }
+      } else if (value > current.rooot) {
+        if (current.rightFork) {
+          remove(current.rightFork)
+        }
+      } else if (!(value < current.rooot && value > current.rooot)) {
+        return false
+      }
+    }
+    remove(this.rooot)
   }
 
   min() {
@@ -127,13 +165,15 @@ tree.add(14)
 tree.add(10)
 tree.add(13)
 tree.add(13.5)
+tree.add(6)
+tree.add(3)
 
 
 
 
-// console.log(tree)
-// console.log(tree.has(15))
-console.log(tree.find(16))
+console.log(tree)
+tree.remove(14)
+console.log(tree.rooot.rightFork)
 
 
 
