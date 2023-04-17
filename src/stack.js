@@ -39,12 +39,14 @@ module.exports = {
 
 let newArray = new Stack()
 
-console.log(newArray)
+// console.log(newArray)
 
 newArray.push(5)
-newArray.push(7)
+newArray.push(5)
 newArray.push(4)
 newArray.push(8)
+console.log(newArray)
 newArray.pop()
-console.log(newArray.pop())
+newArray.peek()
+console.log(newArray)
 console.log(newArray.peek())
